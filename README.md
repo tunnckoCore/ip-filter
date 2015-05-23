@@ -28,6 +28,14 @@ console.log(ipFilter('123.222.34.89', ['123.???.34.8*', '!123.222.34.89']))
 ```
 
 
+## See also
+- [apidocs-cli](https://github.com/tunnckocore/apidocs-cli): Async CLI for automatically generating API docs from code comments
+- [is-missing](https://github.com/tunnckoCore/is-missing): Check that given `name` or `user/repo` exists in npm registry or in… [more](https://github.com/tunnckoCore/is-missing)
+- [koa-ip-filter](https://github.com/tunnckocore/koa-ip-filter): Filter IPs with a glob pattern, regex, string, array or matcher function.… [more](https://github.com/tunnckocore/koa-ip-filter)
+- [micromatch](https://github.com/jonschlinkert/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster… [more](https://github.com/jonschlinkert/micromatch)
+- [npm-related](https://github.com/tunnckoCore/npm-related): Thin wrapper on top of `helper-related` for generating a list of links… [more](https://github.com/tunnckoCore/npm-related)
+
+
 ## Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/tunnckoCore/ip-filter/issues/new).

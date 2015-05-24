@@ -38,4 +38,12 @@ test('ip-filter:', function () {
     test.equal(actual, expected)
     done()
   })
+
+  test('should support no strict mode to compare other than IPs', function (done) {
+    var actual = ipFilter('x-koaip', ['*-koaip', '!foo-koa'], true)
+    var expected = 'x-koaip'
+
+    test.equal(actual, expected)
+    done()
+  })
 })

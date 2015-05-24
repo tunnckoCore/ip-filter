@@ -10,8 +10,8 @@
 var ipRegex = require('ip-regex')
 var matcher = require('is-match')
 
-module.exports = function ipFilter (ip, patterns) {
-  if (!ipRegex().test(ip)) {
+module.exports = function ipFilter (ip, patterns, strict) {
+  if (!strict && !ipRegex().test(ip)) {
     throw new Error('ip-filter expect only valid IPv4/IPv6 IPs')
   }
 

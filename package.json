@@ -1,6 +1,6 @@
 {
   "name": "ip-filter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Filter valid IPv4 or IPv6 IP against glob pattern, array, string, regexp or matcher function, if match return the checked IP, otherwise return falsey value.",
   "repository": "tunnckoCore/ip-filter",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",

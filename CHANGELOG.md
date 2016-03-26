@@ -1,5 +1,12 @@
 
 
+## 1.0.1 - 2015-03-26
+- Release v1.0.1 / npm@v1.0.1
+- add more tests
+- little refactor to use `to-file-path` in strict mode
+  + forced to be done, because of `micromatch@2.2` that works only for filepaths
+- update deps
+
 ## 1.0.0 - 2015-05-24
 - Release v1.0.0 / npm@v1.0.0
 - add support for no strict mode

@@ -1,6 +1,6 @@
 {
   "name": "ip-filter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Filters valid IPv4 or IPv6 against glob pattern, array, string and etc. If match returns passed `ip`, otherwise null is returned. Have no strict mode to check no IP values.",
   "repository": "tunnckoCore/ip-filter",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",

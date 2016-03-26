@@ -1,5 +1,11 @@
 
 
+## 1.0.2 - 2015-03-26
+- Release v1.0.2 / npm@v1.0.2
+- use verb to generate docs
+- update boilerplate and license year
+- use pre-commit to guarantee workflow
+
 ## 1.0.1 - 2015-03-26
 - Release v1.0.1 / npm@v1.0.1
 - add more tests

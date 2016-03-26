@@ -59,6 +59,12 @@
         "koa-ip-filter"
       ]
     },
+    "reflinks": [
+      "is-match",
+      "to-object-path",
+      "koa-ip-filter",
+      "to-file-path"
+    ],
     "lint": {
       "reflinks": true
     }

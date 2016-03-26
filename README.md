@@ -4,6 +4,8 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
+You might also be interested in [to-object-path][], [to-file-path][] or [koa-ip-filter][].
+
 ## Install
 ```
 npm i ip-filter --save
@@ -14,6 +16,31 @@ npm i ip-filter --save
 
 ```js
 const ipFilter = require('ip-filter')
+```
+
+### [ipFilter](index.js#L39)
+> Filter `ip` against glob `patterns`.
+
+**Params**
+
+* `ip` **{String}**    
+* `patterns` **{String|Array|RegExp|Function|Object}**: Basically everything that [is-match][] can accept.    
+* `noStrict` **{Boolean}**: Pass `true` if want to validate non-ip values.    
+* `returns` **{String|null}**: If not match returns `null`, otherwise the passed `ip`.  
+
+**Example**
+
+```js
+var ipFilter = require('ip-filter')
+
+console.log(ipFilter('123.77.34.89', '123.??.34.8*')) // => '123.77.34.89'
+console.log(ipFilter('123.222.34.88', '123.??.34.8*')) // => null
+console.log(ipFilter('123.222.34.88', ['123.*.34.*', '!123.222.*'])) // => null
+console.log(ipFilter('123.222.33.1', ['123.*.34.*', '*.222.33.*'])) // => '123.222.33.1'
+
+// no strict mode
+console.log(ipFilter('x-koaip', ['*-koaip', '!foo-koa*'], true)) // => 'x-koaip'
+console.log(ipFilter('x-koa.foo', ['*-koa.*', '!foo-koa.*'], true)) // => 'x-koa.foo'
 ```
 
 ## Related
@@ -31,8 +58,9 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
-[ip-regex]: https://github.com/sindresorhus/ip-regex
 [is-match]: https://github.com/jonschlinkert/is-match
+[to-object-path]: https://github.com/jonschlinkert/to-object-path
+[koa-ip-filter]: https://github.com/tunnckocore/koa-ip-filter
 [to-file-path]: https://github.com/tunnckocore/to-file-path
 
 [npmjs-url]: https://www.npmjs.com/package/ip-filter

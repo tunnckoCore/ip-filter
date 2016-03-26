@@ -8,17 +8,19 @@
 'use strict'
 
 var ipRegex = require('ip-regex')
-var matcher = require('is-match')
+var isMatch = require('is-match')
+var toPath = require('to-file-path')
 
-module.exports = function ipFilter (ip, patterns, strict) {
-  if (!strict && !ipRegex().test(ip)) {
+module.exports = function ipFilter (ip, patterns, noStrict) {
+  noStrict = typeof noStrict === 'boolean' ? noStrict : false
+
+  if (!noStrict && !ipRegex().test(ip)) {
     throw new Error('ip-filter expect only valid IPv4/IPv6 IPs')
   }
 
-  var isMatch = matcher(patterns)
-  if (isMatch(ip)) {
-    return ip
-  }
+  var match = noStrict
+    ? isMatch(patterns)(ip)
+    : isMatch(toPath(patterns))(toPath(ip))
 
-  return null
+  return match ? ip : null
 }

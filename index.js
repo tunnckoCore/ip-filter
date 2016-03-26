@@ -1,7 +1,7 @@
 /*!
  * ip-filter <https://github.com/tunnckoCore/ip-filter>
  *
- * Copyright (c) 2015 Charlike Mike Reagent, contributors.
+ * Copyright (c) 2015-2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.
  */
 

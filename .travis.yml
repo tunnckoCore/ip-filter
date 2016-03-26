@@ -1,15 +1,29 @@
-sudo: false
 language: "node_js"
+sudo: false
+
 node_js:
   - "0.10"
   - "0.12"
-  - "iojs"
+  - "4"
+  - "5"
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+
 before_script:
   - npm install standard
   - standard
+
 script:
   - npm install istanbul
-  - istanbul cover test.js --report lcovonly
-after_script:
+  - node --harmony node_modules/.bin/istanbul cover test.js
+
+after_success:
   - npm install coveralls
-  - cat ./coverage/lcov.info | coveralls
+  - cat coverage/lcov.info | coveralls
+
+matrix:
+  allow_failures:
+    - node_js: "0.10"

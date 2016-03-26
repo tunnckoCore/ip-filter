@@ -1,11 +1,9 @@
 /*!
  * ip-filter <https://github.com/tunnckoCore/ip-filter>
  *
- * Copyright (c) 2015 Charlike Mike Reagent, contributors.
+ * Copyright (c) 2015-2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.
  */
-
-/* jshint asi:true */
 
 'use strict'
 
@@ -51,3 +49,4 @@ test('should work in no strict mode', function (done) {
   test.strictEqual(actual, 'x-koaip.foo')
   done()
 })
+

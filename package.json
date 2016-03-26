@@ -1,9 +1,10 @@
 {
   "name": "ip-filter",
   "version": "1.0.1",
-  "description": "Filter valid IPv4 or IPv6 IP against glob pattern, array, string, regexp or matcher function, if match return the checked IP, otherwise return falsey value.",
+  "description": "Filters valid IPv4 or IPv6 against glob pattern, array, string and etc. If match returns passed `ip`, otherwise null is returned. Have no strict mode to check no IP values.",
   "repository": "tunnckoCore/ip-filter",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "precommit.silent": true,
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -15,14 +16,19 @@
     "to-file-path": "^1.0.0"
   },
   "devDependencies": {
-    "assertit": "^0.1.0"
+    "assertit": "^0.1.0",
+    "pre-commit": "*"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "array",
     "check",
     "filter",
     "glob",
     "ip",
+    "ip-filter",
     "ips",
     "ipv",
     "ismatch",
@@ -30,10 +36,31 @@
     "matcher",
     "micro",
     "micromatch",
+    "modern",
     "patterns",
     "regexp",
     "string",
     "valid",
     "validate"
-  ]
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "to-file-path",
+        "ip-regex",
+        "is-match",
+        "micromatch",
+        "koa-ip-filter"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    }
+  }
 }

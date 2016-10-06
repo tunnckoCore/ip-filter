@@ -7,7 +7,7 @@
 
 'use strict'
 
-var test = require('assertit')
+var test = require('mukla')
 var ipFilter = require('./index')
 
 test('should throw TypeError if `ip` not a string', function (done) {

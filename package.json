@@ -1,7 +1,7 @@
 {
   "name": "ip-filter",
   "version": "1.0.2",
-  "description": "Validates valid IPs (IPv4 and IPv6) using micromatch - glob patterns, RegExp, string or array of globs. If match returns the IP, otherwise null.",
+  "description": "Validates valid IPs (IPv4 and IPv6) using [micromatch][] - glob patterns, RegExp, string or array of globs. If match returns the IP, otherwise null.",
   "repository": "tunnckoCore/ip-filter",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
@@ -56,14 +56,17 @@
         "ip-regex",
         "is-match",
         "micromatch",
-        "koa-ip-filter"
+        "koa-ip-filter",
+        "is-match-ip"
       ]
     },
     "reflinks": [
       "is-match",
-      "to-object-path",
       "koa-ip-filter",
-      "to-file-path"
+      "to-file-path",
+      "to-object-path",
+      "ip-filter",
+      "micromatch"
     ],
     "lint": {
       "reflinks": true

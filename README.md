@@ -1,6 +1,6 @@
 # [ip-filter][author-www-url] [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] 
 
-> Filters valid IPv4 or IPv6 against glob pattern, array, string and etc. If match returns passed `ip`, otherwise null is returned. Have no strict mode to check no IP values.
+> Validates valid IPs (IPv4 and IPv6) using [micromatch][] - glob patterns, RegExp, string or array of globs. If match returns the IP, otherwise null.
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
@@ -18,14 +18,14 @@ npm i ip-filter --save
 const ipFilter = require('ip-filter')
 ```
 
-### [ipFilter](index.js#L39)
+### [ipFilter](index.js#L51)
 > Filter `ip` against glob `patterns`.
 
 **Params**
 
-* `ip` **{String}**    
+* `ip` **{String}**: Accepts only valid IPs by default    
 * `patterns` **{String|Array|RegExp|Function|Object}**: Basically everything that [is-match][] can accept.    
-* `noStrict` **{Boolean}**: Pass `true` if want to validate non-ip values.    
+* `options` **{Object}**: Pass `strict: false` if want to validate non-ip values, also passed to [is-match][] and so to [micromatch][]    
 * `returns` **{String|null}**: If not match returns `null`, otherwise the passed `ip`.  
 
 **Example**
@@ -35,20 +35,32 @@ var ipFilter = require('ip-filter')
 
 console.log(ipFilter('123.77.34.89', '123.??.34.8*')) // => '123.77.34.89'
 console.log(ipFilter('123.222.34.88', '123.??.34.8*')) // => null
-console.log(ipFilter('123.222.34.88', ['123.*.34.*', '!123.222.*'])) // => null
 console.log(ipFilter('123.222.33.1', ['123.*.34.*', '*.222.33.*'])) // => '123.222.33.1'
 
-// no strict mode
-console.log(ipFilter('x-koaip', ['*-koaip', '!foo-koa*'], true)) // => 'x-koaip'
-console.log(ipFilter('x-koa.foo', ['*-koa.*', '!foo-koa.*'], true)) // => 'x-koa.foo'
+// should notice the difference
+console.log(ipFilter('123.222.34.88', ['123.*.34.*', '!123.222.**']))
+// => null
+console.log(ipFilter('123.222.34.88', ['123.*.34.*', '!123.222.*']))
+// => '123.222.34.88'
+
+//
+// NON-STRICT mode
+//
+
+var res = ipFilter('x-koaip', ['*-koaip', '!foo-koa*'], { strict: false })
+console.log(res) // => 'x-koaip'
+
+var res = ipFilter('x-koa.foo', ['*-koa.*', '!foo-koa.*'], { strict: false })
+console.log(res) // => 'x-koa.foo'
 ```
 
 ## Related
-* [ip-regex](https://www.npmjs.com/package/ip-regex): Regular expression for matching IP addresses | [homepage](https://github.com/sindresorhus/ip-regex)
-* [is-match](https://www.npmjs.com/package/is-match): Create a matching function from a glob pattern, regex, string, array,… [more](https://www.npmjs.com/package/is-match) | [homepage](https://github.com/jonschlinkert/is-match)
-* [koa-ip-filter](https://www.npmjs.com/package/koa-ip-filter): koa middleware to filter request IPs or custom ID with glob… [more](https://www.npmjs.com/package/koa-ip-filter) | [homepage](https://github.com/tunnckocore/koa-ip-filter)
-* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to… [more](https://www.npmjs.com/package/micromatch) | [homepage](https://github.com/jonschlinkert/micromatch)
-* [to-file-path](https://www.npmjs.com/package/to-file-path): Create a filepath from an object path (dot notation), list of… [more](https://www.npmjs.com/package/to-file-path) | [homepage](https://github.com/tunnckocore/to-file-path)
+- [ip-regex](https://www.npmjs.com/package/ip-regex): Regular expression for matching IP addresses | [homepage](https://github.com/sindresorhus/ip-regex "Regular expression for matching IP addresses")
+- [is-match-ip](https://www.npmjs.com/package/is-match-ip): Matching IPs using [micromatch][] and [ip-filter][] - glob patterns, RegExp, string… [more](https://github.com/tunnckocore/is-match-ip#readme) | [homepage](https://github.com/tunnckocore/is-match-ip#readme "Matching IPs using [micromatch][] and [ip-filter][] - glob patterns, RegExp, string or array of globs. Returns matcher function.")
+- [is-match](https://www.npmjs.com/package/is-match): Create a matching function from a glob pattern, regex, string, array… [more](https://github.com/jonschlinkert/is-match) | [homepage](https://github.com/jonschlinkert/is-match "Create a matching function from a glob pattern, regex, string, array, object or function.")
+- [koa-ip-filter](https://www.npmjs.com/package/koa-ip-filter): koa middleware to filter request IPs or custom ID with glob… [more](https://github.com/tunnckocore/koa-ip-filter#readme) | [homepage](https://github.com/tunnckocore/koa-ip-filter#readme "koa middleware to filter request IPs or custom ID with glob patterns, array, string, regexp or matcher function. Support custom `403 Forbidden` message and custom ID.")
+- [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to… [more](https://github.com/jonschlinkert/micromatch) | [homepage](https://github.com/jonschlinkert/micromatch "Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch.")
+- [to-file-path](https://www.npmjs.com/package/to-file-path): Create a filepath from an object path (dot notation), list of… [more](https://github.com/tunnckocore/to-file-path#readme) | [homepage](https://github.com/tunnckocore/to-file-path#readme "Create a filepath from an object path (dot notation), list of arguments, array, number or Arguments object.")
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/tunnckoCore/ip-filter/issues/new).  
@@ -58,10 +70,12 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
+[ip-filter]: https://github.com/tunnckocore/ip-filter
 [is-match]: https://github.com/jonschlinkert/is-match
-[to-object-path]: https://github.com/jonschlinkert/to-object-path
 [koa-ip-filter]: https://github.com/tunnckocore/koa-ip-filter
+[micromatch]: https://github.com/jonschlinkert/micromatch
 [to-file-path]: https://github.com/tunnckocore/to-file-path
+[to-object-path]: https://github.com/jonschlinkert/to-object-path
 
 [npmjs-url]: https://www.npmjs.com/package/ip-filter
 [npmjs-img]: https://img.shields.io/npm/v/ip-filter.svg?label=ip-filter

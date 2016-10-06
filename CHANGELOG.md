@@ -1,5 +1,17 @@
 
 
+## 2.0.0 - 2016-10-06
+
+- update repo style and dotfiles
+- use standard-version
+- follow semver and standards
+- use npm scripts
+
+**BREAKING CHANGES**
+
+- make 3rd argument to be `options` object instead of boolean
+- fixes #3 and add more tests
+
 ## 1.0.2 - 2015-03-26
 - Release v1.0.2 / npm@v1.0.2
 - use verb to generate docs

@@ -1,6 +1,6 @@
 {
   "name": "ip-filter",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Validates valid IPs (IPv4 and IPv6) using [micromatch][] - glob patterns, RegExp, string or array of globs. If match returns the IP, otherwise null.",
   "repository": "tunnckoCore/ip-filter",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",

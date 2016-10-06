@@ -18,14 +18,14 @@ npm i ip-filter --save
 const ipFilter = require('ip-filter')
 ```
 
-### [ipFilter](index.js#L51)
-> Filter `ip` against glob `patterns`.
+### [ipFilter](index.js#L53)
+> Filter `ip` against glob `patterns`, using [micromatch][] under the hood, so `options` are passed to it.
 
 **Params**
 
 * `ip` **{String}**: Accepts only valid IPs by default    
 * `patterns` **{String|Array|RegExp|Function|Object}**: Basically everything that [is-match][] can accept.    
-* `options` **{Object}**: Pass `strict: false` if want to validate non-ip values, also passed to [is-match][] and so to [micromatch][]    
+* `options` **{Object}**: Pass `strict: false` if want to validate non-ip values, also passed to [is-match][].    
 * `returns` **{String|null}**: If not match returns `null`, otherwise the passed `ip`.  
 
 **Example**

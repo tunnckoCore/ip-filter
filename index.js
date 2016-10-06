@@ -12,7 +12,9 @@ var isMatch = require('is-match')
 var toPath = require('to-file-path')
 
 /**
- * > Filter `ip` against glob `patterns`.
+ * > Filter `ip` against glob `patterns`,
+ * using [micromatch][] under the hood, so
+ * `options` are passed to it.
  *
  * **Example**
  *
@@ -43,7 +45,7 @@ var toPath = require('to-file-path')
  * @param  {String} `ip` Accepts only valid IPs by default
  * @param  {String|Array|RegExp|Function|Object} `patterns` Basically everything that [is-match][] can accept.
  * @param  {Object} `options` Pass `strict: false` if want to validate non-ip values,
- *                            also passed to [is-match][] and so to [micromatch][]
+ *                            also passed to [is-match][].
  * @return {String|null} If not match returns `null`, otherwise the passed `ip`.
  * @api public
  */

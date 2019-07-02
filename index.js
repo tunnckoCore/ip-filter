@@ -8,7 +8,7 @@
 'use strict'
 
 var ipRegex = require('ip-regex')
-var isMatch = require('is-match')
+var micromatch = require('micromatch')
 var toPath = require('to-file-path')
 
 /**
@@ -65,7 +65,8 @@ module.exports = function ipFilter (ip, patterns, options) {
   var id = options.strict ? tofp(ip) : ip
   patterns = options.strict ? tofp(patterns) : patterns
 
-  return isMatch(patterns, options)(id) ? ip : null
+  const matches = micromatch(id, patterns, options)
+  return matches.length > 0 ? ip : null
 }
 
 function tofp (val) {

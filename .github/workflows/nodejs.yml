@@ -9,27 +9,27 @@ on:
     - master
 
 jobs:
-  ci:
+  build:
     strategy:
       matrix:
         platform: [ubuntu-18.04, macos-latest, windows-latest]
-        node-version: [8.x, 10.x, 12.x]
+        node: [8.x, 10.x, 12.x]
     runs-on: ${{ matrix.platform }}
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ matrix.node }}
     - name: Installing dependencies
       run: yarn install --frozen-lockfile
     - name: Linting codebase with ESLint & Prettier
       run: yarn lint
     - name: Type checking codebase
-      run: yarn typecheck || yarn check || echo "No typescript, no type checking"
+      run: yarn typecheck || echo "No need for type checking or it failed"
       
   publish-npm:
-    needs: ci
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -38,6 +38,6 @@ jobs:
           node-version: 12
           registry-url: 'https://registry.npmjs.org/'
       - run: npm publish
-        if: github.event == 'push'
+        if: github.event_name == 'push'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

@@ -25,8 +25,8 @@ jobs:
       run: yarn install --frozen-lockfile
     - name: Linting codebase with ESLint & Prettier
       run: yarn lint
-    - name: Type checking codebase
-      run: yarn typecheck || echo "No need for type checking or it failed"
+    #- name: Type checking codebase
+    #  run: yarn typecheck || echo "No need for type checking or it failed"
       
   publish-npm:
     needs: build
